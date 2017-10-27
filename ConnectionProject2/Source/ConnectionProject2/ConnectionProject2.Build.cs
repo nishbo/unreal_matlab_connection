@@ -2,15 +2,15 @@
 
 using UnrealBuildTool;
 
-public class ConnectionProject : ModuleRules
+public class ConnectionProject2 : ModuleRules
 {
-	public ConnectionProject(ReadOnlyTargetRules Target) : base(Target)
+	public ConnectionProject2(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "Networking", "Sockets" });
+		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
