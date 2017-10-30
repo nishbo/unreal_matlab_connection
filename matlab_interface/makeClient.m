@@ -20,12 +20,16 @@ matlab_client('connect')
 A=matlab_client('version');
 fprintf('Server version %d\n', A.n);
 
-A=matlab_client('request_data')
+tic
+N=10000;
+for c1=1:N
+    A=matlab_client('request_data');
+end
+B=toc;
+fprintf('Mean time per call: %f microseconds.\n', 10^6*B/N);
 A.dat
 
 tosend.n=6;tosend.dat=[1:6]*0.1;
 matlab_client('send_data', tosend);
 
 matlab_client('close')
-
-fprintf('Mean time per call: %f microseconds.\n', 10^6*B/N);
