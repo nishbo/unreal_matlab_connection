@@ -9,13 +9,9 @@
 % copyfile ..\ConnectionProject\Source\ConnectionProject\Public\socket.h socket.h
 % copyfile ..\ConnectionProject\Source\ConnectionProject\Public\socket_api.h socket_api.h
 
-mex -v COMPFLAGS='$COMPFLAGS /Otxg' -output matlab_client.mexw64 ...
-    matlab_client.cpp ...
-    socket_api.cpp ...
-    socket.cpp ...
-    crossplatform_win.cpp
+mex -v COMPFLAGS='$COMPFLAGS /O2 /Wall' -output matlab_client.mexw64 matlab_client.cpp socket_api.cpp socket.cpp crossplatform_win.cpp
 
-matlab_client('connect')
+matlab_client('connect', '', '44500')
 
 A=matlab_client('version');
 fprintf('Server version %d\n', A.n);

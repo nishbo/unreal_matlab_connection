@@ -175,11 +175,16 @@ mxArray* getinfo()
 const char _help[] =
 "\nUSAGE:  [output] = matlab_client(command, [input])\n\n"
 "  OUTPUT               COMMAND                     INPUT\n\n"
-"                       'connect'                   [host name or ip address]\n"
+"                       'connect'                   [host name or ip address [, port]] \n"
 "                       'close'\n"
 "  mjDataReturnTime     'request_data'\n"
 "                       'send_data'                 mjData\n"
-"  mjInfo               'version'\n";
+"  mjInfo               'version'\n"
+"\nExamples:\n"
+"\tmatlab_client('help')                            Displays this message\n"
+"\tmatlab_client('connect')                         Connects to localhost on default port\n"
+"\tmatlab_client('connect', '10.3.29.233')\n"
+"\tmatlab_client('connect', '', '44401')            Connects to localhost on port 44401\n";
 
 
 // exit function
@@ -193,7 +198,7 @@ void exitFunction(void)
 // entry point
 void mexFunction(int nout, mxArray* pout[], int nin, const mxArray* pin[])
 {
-    char command[200], text[200];
+    char command[200], text[200], text2[200];
     int res = 0;
 
     // register exit function only once
@@ -218,20 +223,30 @@ void mexFunction(int nout, mxArray* pout[], int nin, const mxArray* pin[])
     // apply command string
     if( !strcmp(command, "connect") )
     {
-        mexLock();
         // no host name: NULL
         if( nin==1 )
             res = sa_connect(0, 0);
         else
         {
-            if( nin!=2 || mxGetClassID(pin[1])!=mxCHAR_CLASS )
-                mexErrMsgTxt("string argument expected");
+            if(mxGetClassID(pin[1])!=mxCHAR_CLASS )
+                mexErrMsgTxt("string argument expected for host");
             else
             {
                 mxGetString(pin[1], text, 200);
-                res = sa_connect(text, 0);
+                if( nin>2 )
+                    if (mxGetClassID(pin[2])!=mxCHAR_CLASS)
+                        mexErrMsgTxt("string arguments expected for port");
+                    else {
+                        mxGetString(pin[2], text2, 200);
+                        if (res = sa_change_port(text2) == saOK)
+                            res = sa_connect(text, 0);
+                    }
+                else
+                    res = sa_connect(text, 0);
             }
         }
+        if (!res)
+            mexLock();
     }
 
     // sa_close or close

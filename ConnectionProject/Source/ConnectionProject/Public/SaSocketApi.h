@@ -38,6 +38,8 @@ public:
     virtual void Stop();
     // End FRunnable interface
 
+    void changePort(const char* port);
+
 };
 
 
@@ -72,6 +74,9 @@ extern "C" {
 
 	//--------------------------- API functions ---------------------------------------------
 
+    // change default port - workaround for sa_connect
+    saResult sa_change_port(const char* port);
+
 	// connect to specified host (name or IP address, NULL: local host); port is ignored
 	saResult sa_connect(const char* host, const char* port);
 
@@ -104,10 +109,11 @@ extern "C" {
         mjCOM_CANNOTSEND = -5,           // could not send data
         mjCOM_CANNOTRECV = -6,           // could not receive data
         mjCOM_TIMEOUT = -7,           // receive timeout
+        mjCOM_BADPORT       = -8,           // bad port specified
 
         // client-side errors
-        mjCOM_NOCONNECTION = -8,           // connection not established
-        mjCOM_CONNECTED = -9,          // already connected
+        mjCOM_NOCONNECTION = -9,           // connection not established
+        mjCOM_CONNECTED = -10,          // already connected
 	} mjtResult;
 
 

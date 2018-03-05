@@ -27,6 +27,7 @@ AConnectionActorUberStorage::AConnectionActorUberStorage()
 
     infoPrintDisplayPeriod = 10.f;
     printMessages = true;
+    portNumber = 44500;
 
     doBeforeWriting = false;
     doAfterReading = false;
@@ -102,6 +103,10 @@ void AConnectionActorUber::startServer(AConnectionActorUberStorage* var)
     {
         TDBGMSG(var->printMessages, "Starting a new server.", var->infoPrintDisplayPeriod);
 
+        char port[40];
+        sprintf_s(port, "%d", var->portNumber);
+        sasocketapi->changePort(port);
+
         Thread = FRunnableThread::Create(
             sasocketapi, TEXT("FSaSocketApi"),
             128*1024, TPri_Normal);
@@ -125,12 +130,12 @@ void AConnectionActorUber::shutDownServer(AConnectionActorUberStorage* var)
         // stuff
         sasocketapi->Stop();
         FPlatformProcess::Sleep(0.03);
-        delete sasocketapi;
+        // delete sasocketapi;
         FPlatformProcess::Sleep(0.03);
-        delete Thread;
-        Thread = NULL;
+        // delete Thread;
+        // Thread = NULL;
 
-        sasocketapi = new SaSocketApi();
+        // sasocketapi = new SaSocketApi();
 
         serverRunning = false;
     }

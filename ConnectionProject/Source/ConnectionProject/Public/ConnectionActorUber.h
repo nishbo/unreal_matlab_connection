@@ -42,6 +42,8 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServerConfig")
         float infoPrintDisplayPeriod;
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServerConfig")
+        int32 portNumber;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServerConfig")
         bool printMessages;
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServerConfig")
         bool doBeforeWriting;

@@ -196,6 +196,29 @@ void eternal_respond(void)
 
 //------------------------- Standard API implementation ---------------------------------
 
+// change default port to connect to
+saResult sa_change_port(const char* port)
+{
+    // do not change port when connected
+    if( soc.getState() )
+    {
+        mjSetError(mjCOM_CONNECTED);
+        return saERROR;
+    }
+
+    for (int i = 0; i < strlen(port); ++i)
+    {
+        if (!isdigit(port[i]))
+        {
+            mjSetError(mjCOM_BADPORT);
+            return saERROR;
+        }
+    }
+
+    strcpy(soc.portListen, port);
+    return saOK;
+}
+
 // connect to simulator on specified host (name or IP address, NULL: local host)
 saResult sa_connect(const char* host, const char* port)
 {
@@ -301,6 +324,9 @@ const char* sa_last_result(void)
 
 	case mjCOM_TIMEOUT:
 		return "Socket timeout, disconnecting";
+
+    case mjCOM_BADPORT:
+        return "Bad port specified, closing";
 
 	case mjCOM_NOCONNECTION:
 		return "No connection to host";
@@ -540,8 +566,14 @@ SaSocketApi::SaSocketApi()
 
 SaSocketApi::~SaSocketApi()
 {
+
     if (soc.getState())
         mj_close();
+}
+
+void SaSocketApi::changePort(const char* port)
+{
+    sa_change_port(port);
 }
 
 //Init
