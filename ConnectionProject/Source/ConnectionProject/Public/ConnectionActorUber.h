@@ -46,9 +46,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServerConfig")
         bool printMessages;
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServerConfig")
-        bool doBeforeWriting;
+        bool doAfterWriting;
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServerConfig")
-        bool doAfterReading;
+        bool doBeforeReading;
 };
 
 

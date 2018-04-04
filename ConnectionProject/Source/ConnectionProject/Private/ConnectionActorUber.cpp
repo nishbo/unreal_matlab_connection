@@ -29,8 +29,8 @@ AConnectionActorUberStorage::AConnectionActorUberStorage()
     printMessages = true;
     portNumber = 44500;
 
-    doBeforeWriting = false;
-    doAfterReading = false;
+    doAfterWriting = false;
+    doBeforeReading = false;
 }
 
 
