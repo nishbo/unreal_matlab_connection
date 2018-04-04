@@ -22,6 +22,7 @@
 #define TDBGMSG(bPrint, text, time) if (bPrint) { DBGMSG(text, time); }
 
 #define TDBGMSG_NT(bPrint, text, time) if (bPrint) { DBGMSG_NT(text, time); }
+// UE_LOG(LogTemp, Warning, TEXT("sasocketapi currently references %p address."), (void *) sasocketapi);
 
 
 typedef enum _mjtSoc		// results from socket send/receive

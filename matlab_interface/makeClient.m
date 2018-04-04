@@ -18,7 +18,7 @@ fprintf('Server version %d\n', A.n);
 
 tosend.n=6;tosend.dat=[1:6]*0.1;
 tic
-N=100000;
+N=1000;
 Bst = zeros(1, N);
 for c1=1:N
 %     A=matlab_client('request_data');

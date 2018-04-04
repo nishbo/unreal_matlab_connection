@@ -127,11 +127,18 @@ void AConnectionActorUber::shutDownServer(AConnectionActorUberStorage* var)
     {
         TDBGMSG(var->printMessages, "Server was running.", var->infoPrintDisplayPeriod);
 
+        // FString msg_buf = FString::Printf(TEXT("sasocketapi currently references %p address."), (void *) sasocketapi);
+        // TDBGMSG_NT(var->printMessages, msg_buf, var->infoPrintDisplayPeriod);
+        // FString::Printf(msg_buf);
+        // UE_LOG(LogTemp, Warning, TEXT(msg_buf));
+        // UE_LOG(LogTemp, Warning, TEXT("sasocketapi currently references %p address."), (void *) sasocketapi);
+
+
         // stuff
         sasocketapi->Stop();
-        FPlatformProcess::Sleep(0.03);
+        // FPlatformProcess::Sleep(0.03);
         // delete sasocketapi;
-        FPlatformProcess::Sleep(0.03);
+        // FPlatformProcess::Sleep(0.03);
         // delete Thread;
         // Thread = NULL;
 

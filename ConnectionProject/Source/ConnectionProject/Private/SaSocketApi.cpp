@@ -608,5 +608,10 @@ uint32 SaSocketApi::Run()
 //stop
 void SaSocketApi::Stop()
 {
+    // StopTaskCounter.Increment();
+
+    // UE_LOG(LogTemp, Warning, TEXT("StopTaskCounter currently references %p address."), (void *) &StopTaskCounter);
+    // UE_LOG(LogTemp, Warning, TEXT("It has value %d."), StopTaskCounter.GetValue());
     StopTaskCounter.Increment();
+    // UE_LOG(LogTemp, Warning, TEXT("After increment it has value %d."), StopTaskCounter.GetValue());
 }
