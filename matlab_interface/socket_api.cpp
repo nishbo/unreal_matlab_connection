@@ -5,6 +5,7 @@
   Modified by Anton Sobinov
 
   Copyright (C) 2017 Roboti LLC
+  Copyright (C) 2018 Anton Sobinov
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
