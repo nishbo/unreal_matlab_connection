@@ -26,7 +26,7 @@ AConnectionActorUberStorage::AConnectionActorUberStorage()
     variableOutArray.Empty();
 
     infoPrintDisplayPeriod = 10.f;
-    printMessages = true;
+    printMessages = false;
     portNumber = 44500;
 
     doAfterWriting = false;
@@ -188,10 +188,10 @@ void AConnectionActorUber::updateOutDataAfterWriting(AConnectionActorUberStorage
 
         TDBGMSG(var->printMessages, "Deposited tems in Matlab Server.", var->infoPrintDisplayPeriod);
 
-        FString msg = FString::Printf(TEXT("dat1=%f dat2=%f"), var->variableOutArray[0], var->variableOutArray[1]);
-        GEngine->AddOnScreenDebugMessage(-1, var->infoPrintDisplayPeriod, FColor::Red, msg);
-        msg = FString::Printf(TEXT("dat1=%f dat2=%f"), (sasocketapi->dataOut)[0], (sasocketapi->dataOut)[1]);
-        GEngine->AddOnScreenDebugMessage(-1, var->infoPrintDisplayPeriod, FColor::Red, msg);
+        // FString msg = FString::Printf(TEXT("dat1=%f dat2=%f"), var->variableOutArray[0], var->variableOutArray[1]);
+        // GEngine->AddOnScreenDebugMessage(-1, var->infoPrintDisplayPeriod, FColor::Red, msg);
+        // msg = FString::Printf(TEXT("dat1=%f dat2=%f"), (sasocketapi->dataOut)[0], (sasocketapi->dataOut)[1]);
+        // GEngine->AddOnScreenDebugMessage(-1, var->infoPrintDisplayPeriod, FColor::Red, msg);
     }
     else {
         TDBGMSG(var->printMessages, "Server is NOT running. Cannot update out data", var->infoPrintDisplayPeriod);
