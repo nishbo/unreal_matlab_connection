@@ -58,6 +58,11 @@ Use `matlab_client('help')`. `matlab_client('connect')` connects to the server. 
 
 `mjDataReturnTime` and `mjData` both have two fields, `n` - length and `dat` - data.
 
+## Using plugin
+Add the Plugins folder (located in the project ConnectionProject2 folder) and place it in the root folder of your project. Compile the project files and it is ready to be used.
+Information about pluggins located: https://docs.unrealengine.com/en-us/Programming/Plugins 
+An example of creation is here: https://wiki.unrealengine.com/An_Introduction_to_UE4_Plugins 
+
 ## Acknowledgements
 
 The project uses code from [matlab_c_sockets](https://github.com/nishbo/matlab_c_sockets) repository.
@@ -67,6 +72,7 @@ Special thanks to Rama for [multi-threading tutorial](https://wiki.unrealengine.
 ## Authors
 
 * **Anton Sobinov** - [nishbo](https://github.org/nishbo)
+* **Matthew Boots** - [mboots](https://github.org/mboots)
 
 ## License
 
